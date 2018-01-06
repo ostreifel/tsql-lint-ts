@@ -1,0 +1,28 @@
+{
+  "name": "tsql-lint-ts",
+  "version": "0.0.1",
+  "description": "Typescript implementation of tsql linter",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "test1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ostreifel/tsql-lint-ts.git"
+  },
+  "keywords": [
+    "lint",
+    "typescript",
+    "tsql"
+  ],
+  "author": "Otto Streifel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ostreifel/tsql-lint-ts/issues"
+  },
+  "homepage": "https://github.com/ostreifel/tsql-lint-ts#readme",
+  "devDependencies": {
+    "@types/mocha": "^2.2.46",
+    "mocha": "^4.1.0"
+  }
+}
