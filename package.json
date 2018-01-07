@@ -11,10 +11,10 @@
     "compile:core": "tsc -p src",
     "compile:test": "tsc -p test",
     "lint": "npm-run-all -p lint:core lint:test",
-    "lint:core": "tslint --project test/tsconfig.json",
-    "lint:test": "tslint --project src/tsconfig.json",
+    "lint:core": "tslint -p src/tslint.json",
+    "lint:test": "tslint -p test/tslint.json",
     "publish:local": "./scripts/npmPublish.sh",
-    "test": "mocha --reporter spec --colors \"build/test/**/*Tests.js\"",
+    "test": "mocha --reporter spec --colors \"build/test/**/*test.js\"",
     "verify": "npm-run-all clean compile lint test"
   },
   "repository": {
