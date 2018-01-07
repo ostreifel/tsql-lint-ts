@@ -2,8 +2,8 @@
   "name": "tsql-lint-ts",
   "version": "0.0.1",
   "description": "Typescript implementation of tsql linter",
-  "main": "./lib/src/index.js",
-  "typings": "./lib/src/index.d.ts",
+  "main": "./lib/index.js",
+  "typings": "./lib/index",
   "files": ["lib"],
   "scripts": {
     "clean": "npm-run-all -p clean:core clean:test",

@@ -1,5 +1,5 @@
 import { CommonTokenStream, Token } from "antlr4ts";
-import { TSqlParser } from "../generated/TSqlParser";
+import { TSqlParser } from "./generated/TSqlParser";
 
 export interface IExemption {
     startChar: number;
