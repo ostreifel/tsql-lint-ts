@@ -4,7 +4,18 @@
   "description": "Typescript implementation of tsql linter",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "test1"
+    "clean": "npm-run-all -p clean:core clean:test",
+    "clean:core": "rimraf lib",
+    "clean:test": "rimraf build",
+    "compile": "npm-run-all -p compile:core compile:test",
+    "compile:core": "tsc -p src",
+    "compile:test": "tsc -p test",
+    "lint": "npm-run-all -p lint:core lint:test",
+    "lint:core": "tslint --project test/tsconfig.json",
+    "lint:test": "tslint --project src/tsconfig.json",
+    "publish:local": "./scripts/npmPublish.sh",
+    "test": "mocha --reporter spec --colors \"build/test/**/*Tests.js\"",
+    "verify": "npm-run-all clean compile lint test"
   },
   "repository": {
     "type": "git",
@@ -23,6 +34,14 @@
   "homepage": "https://github.com/ostreifel/tsql-lint-ts#readme",
   "devDependencies": {
     "@types/mocha": "^2.2.46",
-    "mocha": "^4.1.0"
+    "@types/node": "^8.5.7",
+    "antlr4ts-cli": "^0.4.0-alpha.4",
+    "mocha": "^4.1.0",
+    "npm-run-all": "^4.1.2",
+    "rimraf": "^2.6.2",
+    "typescript": "^2.2.2"
+  },
+  "dependencies": {
+    "antlr4ts": "^0.4.1-alpha.0"
   }
 }

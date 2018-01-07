@@ -1,6 +1,6 @@
 import { ANTLRInputStream, CommonTokenStream } from "antlr4ts";
-import { TSqlLexer } from "../../../generated/TSqlLexer";
-import { Tsql_fileContext, TSqlParser } from "../../../generated/TSqlParser";
+import { TSqlLexer } from "../generated/TSqlLexer";
+import { Tsql_fileContext, TSqlParser } from "../generated/TSqlParser";
 export interface IPosition {
     line: number;
     column: number;

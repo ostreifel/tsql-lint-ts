@@ -1,6 +1,6 @@
 import { RuleNode } from "antlr4ts/tree/RuleNode";
 import { TerminalNode } from "antlr4ts/tree/TerminalNode";
-import { Data_typeContext, TSqlParser } from "../../../../generated/TSqlParser";
+import { Data_typeContext, TSqlParser } from "../../generated/TSqlParser";
 import { Replacement } from "../Replacement";
 import { BaseRuleWalker } from "./common/BaseRuleWalker";
 import { BaseSqlRule } from "./common/BaseSqlRule";
