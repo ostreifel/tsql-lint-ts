@@ -45,7 +45,6 @@ function getPath(currentDir: string): string {
     const pathParts = path.resolve(currentDir).split(path.sep);
     do {
         const testPath = path.join(...pathParts, configName);
-        console.log("testing config path", testPath);
         if (isConfig(testPath)) {
             return testPath;
         }
@@ -58,7 +57,6 @@ export function getLintConfiguration(currentDir: string = path.resolve(".")): IL
     const configPath = getPath(currentDir);
     if (configPath) {
         const fileContents = fs.readFileSync(configPath, "utf8");
-        console.log("fileContents", fileContents);
         return JSON.parse(fileContents);
     }
     return defaultConfig;

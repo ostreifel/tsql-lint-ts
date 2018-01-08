@@ -4,7 +4,10 @@
   "description": "Typescript implementation of tsql linter",
   "main": "./lib/index.js",
   "typings": "./lib/index",
-  "files": ["lib"],
+  "files": [
+    "lib",
+    "bin"
+  ],
   "scripts": {
     "clean": "npm-run-all -p clean:core clean:test",
     "clean:core": "rimraf lib",
@@ -41,9 +44,12 @@
     "mocha": "^4.1.0",
     "npm-run-all": "^4.1.2",
     "rimraf": "^2.6.2",
-    "typescript": "^2.2.2"
+    "typescript": "^2.6.2"
   },
   "dependencies": {
-    "antlr4ts": "^0.4.1-alpha.0"
+    "@types/glob": "^5.0.34",
+    "antlr4ts": "^0.4.1-alpha.0",
+    "commander": "^2.12.2",
+    "glob": "^7.1.2"
   }
 }
