@@ -1,25 +1,11 @@
 import * as fs from "fs";
 import * as glob from "glob";
 import * as path from "path";
-import { getLintConfiguration } from "./configuration";
-import { SqlRuleFailure } from "./rules/common/SqlRuleFailure";
 import { executeForFile } from "./rulesManager";
 
 export interface ICliOptions {
-    // config?: string;
-    exclude?: string[];
-    // fix?: boolean;
-    // force?: boolean;
-    // help?: boolean;
     init?: boolean;
     project?: string;
-    // out?: string;
-    // outputAbsolutePaths: boolean;
-    // rulesDir?: string;
-    // formattersDir: string;
-    // format?: string;
-    // typeCheck?: boolean;
-    // test?: string;
     version?: boolean;
 }
 
@@ -36,20 +22,25 @@ export const enum Status {
 
 export function run(options: ICliOptions, logger: ILogger): Status {
     const project = options.project || ".";
-    const exclude = options.exclude || [];
-    return runProject(project, exclude, logger);
+    return runProject(project, logger);
 }
 
-function runProject(project: string, exclude: string[], logger: ILogger): Status {
-    const config = getLintConfiguration(project);
+function runProject(project: string, logger: ILogger): Status {
     let errorCount: number = 0;
     const files = getFiles();
     for (const file of files) {
+        const startMs = new Date().getTime();
         const fileContents = fs.readFileSync(file, "utf8");
         const fileErrors = executeForFile(fileContents, file);
+        for (const error of fileErrors) {
+            const {startPos} = error;
+            console.error(`ERROR: ${file}[${startPos.line + 1}, ${startPos.column + 1}] ${error.message}`);
+        }
         if (fileErrors.length > 0) {
             console.error(`${fileErrors.length} errors detected in ${file}`);
         }
+        const endMs = new Date().getTime();
+        console.log(`Parse time ${endMs - startMs}, ${(fileContents.match(/\n/g) || []).length}, ${file}`);
         errorCount += fileErrors.length;
     }
     if (errorCount > 0) {
@@ -61,6 +52,6 @@ function runProject(project: string, exclude: string[], logger: ILogger): Status
     }
     function getFiles(): string[] {
         const filesGlob = path.join(path.resolve(project), "**", "*.sql");
-        return glob.sync(filesGlob, {ignore: exclude});
+        return glob.sync(filesGlob);
     }
 }
